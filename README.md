@@ -1,10 +1,75 @@
 # Microsoft SQL Server Tips & Tricks
 
-Quelques trucs et astuces sur Microsoft SQL Server ...
-
 [![forthebadge](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)](http://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](http://forthebadge.com)  [![forthebadge](https://forthebadge.com/images/badges/check-it-out.svg)](http://forthebadge.com)  [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 
+Quelques trucs et astuces sur Microsoft SQL Server.
+
+Ce projet utilise un devcontainer Docker pour fournir :
+
+- Une base de données Microsoft SQL Server 2022 accessible localement
+- Un conteneur de développement Debian pour se connecter via VS Code
+
+---
+
 ![Microsoft SQL Server](./images/mssql-logo-256.png)
+
+---
+
+## ♻ Prérequis
+
+- Docker
+- Visual Studio Code
+- Extension VS Code : Dev Containers (ou "Remote - Containers")
+
+## 📂 Structure du projet
+
+```bash
+.devcontainer/
+├── devcontainer.json
+├── docker-compose.yml
+workspace/
+└── (vos fichiers de projet)
+```
+
+## ⚖️ Services Docker
+
+- dev : conteneur Debian pour le développement (VS Code se connecte ici)
+- sqlserver : conteneur SQL Server 2022
+
+## ⚡ Lancement rapide
+
+1. Cloner le projet
+```bash
+git clone <url-du-repo>
+cd <repo>
+```
+2. Ouvrir dans VS Code
+- Lancer la commande Reopen in Container
+- Attendre le démarrage des services
+3. Connexion SQL Server (via SSMS ou autre)
+- Serveur : localhost,1433
+- Utilisateur : sa
+- Mot de passe : YourStrong!Passw0rd
+
+Vous pouvez modifier ce mot de passe dans docker-compose.yml
+
+## ⚙️ Commandes utiles
+
+Redémarrer le conteneur :
+```bash
+docker compose down && docker compose up -d
+```
+
+Afficher les logs SQL Server :
+```bash
+docker logs sqlserver
+```
+
+## 🔧 Personnalisation
+
+Vous pouvez :
+- Installer sqlcmd dans le conteneur dev pour requêter la base en ligne de commande
+- Ajouter des scripts SQL d'initialisation dans un volume ou un entrypoint
 
 ## Conseils
 
